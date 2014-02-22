@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
 					sprintf(ns2_ip, "%s", sqlite3_column_text(res, 4));
 					/* mega hack following */
 					// printf("NS1: [%s]\nNS2: [%s]\n", ns1_ip, ns2_ip); /* FOR DEBUGGING ONLY */
-					if(strstr(ns1, ".oz"))
+					if(strstr(ns1, ".pirate"))
 					{
 						printf("$ORIGIN %s.%s.\n", sqlite3_column_text(res, 0), tld);
 						subdomain_cp=strdup(ns1);

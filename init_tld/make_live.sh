@@ -6,14 +6,14 @@
 # especially the OpenNIC suite, and run. A cron job could be handy too.
 
 # change these to suit. they should be self-explanatory.
-TLD_DB=/var/www/opennic.oz/OZ_tld.sq3
+TLD_DB=/var/www/opennic.pirate/Pirate_tld.sq3
 ZONE_DIR=/var/cache/bind/opennic/master/
-OPENNIC_SUITE=/home/USER/opennic_tools/
+OPENNIC_SUITE=/home/pirate/opennic_tools/
 PRIMARY_IP=96.44.164.100
 SECONDARY_IP=96.44.164.101
-MY_EMAIL=hostmaster.opennic.oz
-MY_HOST=ns10.opennic.glue
-MY_TLD=oz
+MY_EMAIL=hostmaster.opennic.pirate
+MY_HOST=ns9.opennic.glue
+MY_TLD=pirate
 BIND_USR=bind
 BIND_GRP=bind
 # end of modifications

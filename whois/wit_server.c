@@ -227,7 +227,7 @@ int main (int argc, char *argv[])
 				printf("Domain: %s\nRegistered: %s\nName: %s\nEmail: %s\n\r\n", DOMAINRECORD.dr_domain, DOMAINRECORD.dr_registered, DOMAINRECORD.dr_name, DOMAINRECORD.dr_email); /* this is probably not needed anymore. M. */
 					#endif
 				#endif
-				sprintf(return_buffer, "Welcome to the OpenNIC Registry!\r\nDomain: %s.oz\r\nDomain Registered: %s\r\nDomain Expires: %s\r\nDomain Updated: %s\r\nDomain Status: Active\r\nRegistrant Name: %s\r\nRegistrant Email: %s\r\nNS1: %s\r\nNS2: %s\r\nRegistrar URL: www.opennic.pirate\r\nAbuse Contact: whois.pirate \r\n", DOMAINRECORD.dr_domain, DOMAINRECORD.dr_registered, DOMAINRECORD.expires, DOMAINRECORD.updated, DOMAINRECORD.dr_name, DOMAINRECORD.dr_email, DOMAINRECORD.ns1, DOMAINRECORD.ns2);
+				sprintf(return_buffer, "Welcome to the OpenNIC Registry!\r\nDomain: %s.pirate\r\nDomain Registered: %s\r\nDomain Expires: %s\r\nDomain Updated: %s\r\nDomain Status: Active\r\nRegistrant Name: %s\r\nRegistrant Email: %s\r\nNS1: %s\r\nNS2: %s\r\nRegistrar URL: www.opennic.pirate\r\nAbuse Contact: whois.pirate \r\n", DOMAINRECORD.dr_domain, DOMAINRECORD.dr_registered, DOMAINRECORD.expires, DOMAINRECORD.updated, DOMAINRECORD.dr_name, DOMAINRECORD.dr_email, DOMAINRECORD.ns1, DOMAINRECORD.ns2);
 				send(newSd, return_buffer, RB_LENGTH, 0);
 			}
 			memset(line, 0, MAX_MSG);
