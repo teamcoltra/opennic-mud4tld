@@ -76,13 +76,13 @@
    - Improved some more RM-API integration code.
 */
 session_start();
-$TLD="oz";
-$ws_title="dot OZ";
+$TLD="pirate";
+$ws_title="dotPirate";
 $domain_expires=1; // to allow domains to expire
 $sw_version="0.75";
 $dev_link=0;
-$user="TEST01"; /* for registrars */
-$userkey="1234567890abcdef"; /* for registrars */
+$user=""; /* for registrars */
+$userkey=""; /* for registrars */
 $tld_svr="http://opennic.".$TLD."/rm/rm_api.cgi";
 $mysql_support=0;
 $mysql_server="localhost";
