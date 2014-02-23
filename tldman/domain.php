@@ -30,13 +30,13 @@ function check_domain($domain)
 	$name=str_replace(" ", "", $name); /* remove spaces */
 	$name=str_replace("--", "-", $name); /* remove double hyphens */
 	$name=strtolower($name); /* all lower case to remove confusion */
-	if( (strlen($name)<2) || (strlen($name)>50))
+	if( (strlen($name)<3) || (strlen($name)>50))
 	{
-		echo "Sorry, domain names must contain at least 2 characters and be no longer than 50 characters.";
+		echo "Sorry, domain names must contain at least 3 characters and be no longer than 50 characters.";
 		echo "Please go back and try again.";
 		die;
 	}
-	if(strlen($name)>2)
+	if(strlen($name)>3)
 	{
 		echo "Checking ".$name.".".$TLD." for you...";
 		if(domain_taken($name))
@@ -44,7 +44,7 @@ function check_domain($domain)
 			echo "<font color=\"#ff0000\"><b>Taken</b></font><BR><BR>Sorry, that name is already taken.";
 		} else {
 			echo "<font color=\"#008000\"><b>Available!</b></font><BR><BR>Congratulations! ".$name.".".$TLD." is available.\n";
-			echo "Would you like to register it now?\n<form action=\"register.php\" method=\"post\">\n<input type=\"hidden\" name=\"domain\" value=\"".$name."\">\n<input type=\"submit\" name=\"submit\" value=\"Yes!\">\n</form>\n";
+			echo "Would you like to register it now?\n<form action=\"domain.php\" method=\"post\">\n<input type=\"hidden\" name=\"domain\" value=\"".$name."\">\n<input type=\"submit\" name=\"submit\" value=\"Yes!\">\n</form>\n";
 		}
 		echo "You can use the form below to search for another domain if you like.";
 	}
@@ -331,6 +331,8 @@ function check_domain1($domain)
 		} else {
 			echo "<font color=\"#008000\"><b>Available!</b></font><BR><BR>Congratulations! ".$name.$TLD." is available.\n";
 			echo "Would you like to register it now?\n<form action=\"register.php\" method=\"post\">\n<input type=\"hidden\" name=\"domain\" value=\"".$name."\">\n<input type=\"submit\" name=\"submit\" value=\"Yes!\">\n</form>\n";
+
+			frm_register_domain($name.$TLD);
 		}
 		echo "You can use the form below to search for another domain if you like.";
 	}

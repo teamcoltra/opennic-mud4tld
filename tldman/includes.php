@@ -51,16 +51,21 @@ function dbNumRows($qid)
 
 function domain_taken($domain)
 {
-	global $TLD, $user, $userkey, $tld_svr;
+	global $tld_db;
 	if($domain=="register" || $domain=="opennic" || $domain=="example")
 	{
 		return 1;
 	}
-	$URL=$tld_svr."?cmd=check&user=".$user."&userkey=".$userkey."&tld=".$TLD."&domain=".$domain;
-	$handle=fopen($URL, "r");
-	$ret_data=fread($handle, 1024);
-	fclose($handle);
-	return $ret_data;
+	$base=sqlite_open_now($tld_db, 0666);
+	$query = "SELECT domain FROM domains WHERE domain='".$domain."' LIMIT 1";
+	// echo "<BR><B>DEBUG: [".$query."]</B><BR>";
+	$results = sqlite_query_now($base, $query);
+	if(dbNumRows($results))
+	{
+		return 1;
+	} else {
+		return 0;
+	}
 }
 
 function username_taken($username)
