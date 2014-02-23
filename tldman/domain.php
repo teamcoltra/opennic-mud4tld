@@ -45,6 +45,9 @@ function check_domain($domain)
 		} else {
 			echo "<font color=\"#008000\"><b>Available!</b></font><BR><BR>Congratulations! ".$name.".".$TLD." is available.\n";
 			echo "Would you like to register it now?\n<form action=\"domain.php\" method=\"post\">\n<input type=\"hidden\" name=\"domain\" value=\"".$name."\">\n<input type=\"submit\" name=\"submit\" value=\"Yes!\">\n</form>\n";
+
+			frm_register_domain($name.$TLD);
+			
 		}
 		echo "You can use the form below to search for another domain if you like.";
 	}
