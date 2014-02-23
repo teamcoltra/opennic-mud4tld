@@ -22,6 +22,6 @@ $mysql_password="";
 $mysql_database="";
 $tld_db="../".$TLD."_tld.sq3";
 
-include("includes.php")
+include("includes.php");
 include("templates.php");
 ?>
