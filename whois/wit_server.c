@@ -140,8 +140,8 @@ int query_domain(char domainname[50])
 		{
 			sprintf(DOMAINRECORD.dr_domain, "%s", sqlite3_column_text(res, 0));
 			sprintf(DOMAINRECORD.dr_registered, "%s", sqlite3_column_text(res, 1));
-			sprintf(DOMAINRECORD.dr_name, "%s", "Private - whois.pirate for details");
-			sprintf(DOMAINRECORD.dr_email, "%s", "Private - whois.pirate for details");
+			sprintf(DOMAINRECORD.dr_name, "%s", sqlite3_column_text(res, 2));
+			sprintf(DOMAINRECORD.dr_email, "%s", sqlite3_column_text(res, 3));
 			sprintf(DOMAINRECORD.ns1, "%s", sqlite3_column_text(res, 4));
 			sprintf(DOMAINRECORD.ns2, "%s", sqlite3_column_text(res, 5));
 			sprintf(DOMAINRECORD.expires, "%s", sqlite3_column_text(res, 6));
@@ -165,7 +165,7 @@ int main (int argc, char *argv[])
 	char no_result[10]="NO RESULT";
 	char ret_svr[10]="127.0.0.1";
 
-	printf("WIT/WHOIS server for The OpenNIC Project. Rev.4 (C) 2012 Martin COLEMAN. Forked by Travis \"TeamColtra\" McCrea\n");
+	printf("WIT/WHOIS server for The OpenNIC Project. Rev.4 (C) 2012 Martin COLEMAN.\n");
 	/* create socket */
 	sd = socket(AF_INET, SOCK_STREAM, 0);
 	if(sd<0)
@@ -227,7 +227,7 @@ int main (int argc, char *argv[])
 				printf("Domain: %s\nRegistered: %s\nName: %s\nEmail: %s\n\r\n", DOMAINRECORD.dr_domain, DOMAINRECORD.dr_registered, DOMAINRECORD.dr_name, DOMAINRECORD.dr_email); /* this is probably not needed anymore. M. */
 					#endif
 				#endif
-				sprintf(return_buffer, "Welcome to the OpenNIC Registry!\r\nDomain: %s.pirate\r\nDomain Registered: %s\r\nDomain Expires: %s\r\nDomain Updated: %s\r\nDomain Status: Active\r\nRegistrant Name: %s\r\nRegistrant Email: %s\r\nNS1: %s\r\nNS2: %s\r\nRegistrar URL: www.opennic.pirate\r\nAbuse Contact: whois.pirate \r\n", DOMAINRECORD.dr_domain, DOMAINRECORD.dr_registered, DOMAINRECORD.expires, DOMAINRECORD.updated, DOMAINRECORD.dr_name, DOMAINRECORD.dr_email, DOMAINRECORD.ns1, DOMAINRECORD.ns2);
+				sprintf(return_buffer, "Welcome to the OpenNIC Registry!\r\nDomain: %s.oz\r\nDomain Registered: %s\r\nDomain Expires: %s\r\nDomain Updated: %s\r\nDomain Status: Active\r\nRegistrant Name: %s\r\nRegistrant Email: %s\r\nNS1: %s\r\nNS2: %s\r\nRegistrar URL: www.opennic.oz\r\n", DOMAINRECORD.dr_domain, DOMAINRECORD.dr_registered, DOMAINRECORD.expires, DOMAINRECORD.updated, DOMAINRECORD.dr_name, DOMAINRECORD.dr_email, DOMAINRECORD.ns1, DOMAINRECORD.ns2);
 				send(newSd, return_buffer, RB_LENGTH, 0);
 			}
 			memset(line, 0, MAX_MSG);

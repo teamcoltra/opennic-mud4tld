@@ -1,7 +1,7 @@
 <?php
 /*
-    By Martin COLEMAN (C) 2012. All rights reserved.
-    Released under the Basic Software License v1.0.
+    By Martin COLEMAN (C) 2012-2014. All rights reserved.
+    Released under the 2-clause BSD license.
     See COPYING file for details.
 */
 include("conf.php");
@@ -11,8 +11,9 @@ function form_check_domain()
 	global $TLD;
 ?>
 <p>
-<form action="check.php" method="post">
-Domain name <input type="text" name="domain"><?php echo $TLD; ?>&nbsp;<input type="submit" name="check" value="Check">
+<form action="domain.php" method="post">
+Domain name <input type="text" name="domain">.<?php echo $TLD; ?>&nbsp;<input type="submit" name="check" value="Check">
+<input type="hidden" name="action" value="check_domain">
 </form>
 </p>
 <?php
@@ -20,6 +21,7 @@ Domain name <input type="text" name="domain"><?php echo $TLD; ?>&nbsp;<input typ
 
 function check_domain($domain)
 {
+    global $TLD;
 	/* sanity check the domain */
 	$name=htmlspecialchars(stripslashes($domain));
 	$name=preg_replace("/[^a-zA-Z0-9\-]/","", $name); /* replace characters we do not want */
@@ -34,7 +36,7 @@ function check_domain($domain)
 		echo "Please go back and try again.";
 		die;
 	}
-	if(strlen($name)>1)
+	if(strlen($name)>2)
 	{
 		echo "Checking ".$name.".".$TLD." for you...";
 		if(domain_taken($name))
@@ -51,15 +53,15 @@ function check_domain($domain)
 
 function frm_register_domain($domain)
 {
-	global $TLD;
+	global $TLD, $ws_title;
 ?>
 <table width="500" align="center">
-<tr><td align="center"><h1>dot OZ Registration</h1></td></tr>
+<tr><td align="center"><h1><?php echo $ws_title; ?> Registration</h1></td></tr>
 <tr><td>
 <p>Please fill out the information below. Make sure the details are correct before clicking "Register Domain" as incorrect details may delay the registration process.</p>
 </td></tr>
 <tr><td align="center">
-<p><br><font color="#008000">You are registering <b><?php echo $domain.".".$TLD; ?></b></font><BR>To register a different domain, please <a href="check.php">check</a> it first.</p>
+<p><br><font color="#008000">You are registering <b><?php echo $domain.".".$TLD; ?></b></font><BR>To register a different domain, please <a href="domain.php">check</a> it first.</p>
 <?php
 if(!isset($_SESSION['username']))
 {
@@ -304,7 +306,7 @@ function update_domain($domain, $ns1, $ns2, $ns1_ip, $ns2_ip)
 	}
 }
 
-function check_domain($domain)
+function check_domain1($domain)
 {
 	/* sanity check the domain */
 	$name=htmlspecialchars(stripslashes($domain));

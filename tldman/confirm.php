@@ -1,7 +1,7 @@
 <?php
 /*
     By Martin COLEMAN (C) 2012. All rights reserved.
-    Released under the Basic Software License v1.0.
+    Released under the 2-clause BSD license.
     See COPYING file for details.
 */
 include("conf.php");
@@ -33,7 +33,7 @@ if(isset($_REQUEST['username']))
 	}
 	unlink($myFile);
 
-	confirm_username($clean_username);
+	confirm_user($clean_username);
 	show_header();
 	echo "Your account for ".$clean_username." is now confirmed. You may now login using the link above to start registering domains.";
 	echo "</body></html>\n";

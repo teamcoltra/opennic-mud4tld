@@ -150,7 +150,7 @@ int main (int argc, char *argv[])
 	char ret_svr[10]="127.0.0.1";
 
 	memset(return_buffer, 0, 2048);
-	printf("WIT/WHOIS server for The OpenNIC Project. Rev.5 (C) 2012 Martin COLEMAN. Fork by Travis \"TeamColtra\" McCrea\n");
+	printf("WIT/WHOIS server for The OpenNIC Project. Rev.5 (C) 2012 Martin COLEMAN.\n");
 	/* create socket */
 	sd = socket(AF_INET, SOCK_STREAM, 0);
 	if(sd<0)
