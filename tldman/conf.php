@@ -1,4 +1,5 @@
 <?php
+
 /*
    MUD4TLD - Martin's User and Domain system for Top Level Domains.
    (C) 2012-2014 Martin COLEMAN. All rights reserved.
@@ -174,18 +175,6 @@ function username_taken($username)
 	}
 }
 
-function show_header()
-{
-	global $ws_title, $TLD;
-	echo "<html>\n<head>\n<title>".$ws_title."</title>\n</head>\n<body>\n";
-	echo "<p align=\"left\"><a href=\"index.php\">opennic.".$TLD."</a></p>\n";
-	if(!isset($_SESSION['username']))
-	{
-		echo "<p align=\"right\">Already have an account? <a href=\"user.php?action=frm_login\">Log in</a> or <a href=\"user.php?action=frm_register\">Register</a></p>\n";
-	} else {
-		echo "<p align=\"right\">Hello ".$_SESSION['username']."! [<a href=\"user.php?action=view_account\">My Account</a>]&nbsp;[<a href=\"user.php?action=logout\">Logout</a>].</p>\n";
-	}
-}
 
 function clean_up_input($str)
 {
@@ -230,4 +219,6 @@ function confirm_user($username)
 	$base=sqlite_open_now($tld_db, 0666);
 	sqlite_query_now($base, $query);
 }
+
+include("templates.php");
 ?>
