@@ -251,7 +251,6 @@ function check_domain($domain)
 			echo "<font color=\"#ff0000\"><b>Taken</b></font><BR><BR>Sorry, that name is already taken.";
 		} else {
 			echo "<font color=\"#008000\"><b>Available!</b></font><BR><BR>Congratulations! ".$name.".".$TLD." is available.\n";
-			echo "Would you like to register it now?\n<form action=\"domain.php\" method=\"post\">\n<input type=\"hidden\" name=\"domain\" value=\"".$name."\">\n<input type=\"submit\" name=\"submit\" value=\"Yes!\">\n</form>\n";
 
 			frm_register_domain($name.$TLD);
 			
@@ -310,7 +309,6 @@ function delete_domain($domain)
 {
 	global $tld_svr, $user, $userkey, $TLD;
 
-	show_header();
 	$userid=$_SESSION['userid'];
 	$URL=$tld_svr."?cmd=delete&user=".$user."&userkey=".$userkey."&tld=".$TLD."&domain=".$domain;
 	$handle=fopen($URL, "r");
@@ -337,7 +335,6 @@ function frm_delete_domain($domain)
 {
 	global $TLD;
 	
-	show_header();
 	?>
 	<center>
 	<h2>Cancel <?php echo $domain.$TLD; ?> Registration</h2>
@@ -356,7 +353,7 @@ function frm_view_domain($domain)
 {
 	global $TLD, $tld_db;
 
-	show_header();
+	
 	$userid=$_SESSION['userid'];
 	$base=sqlite_open_now($tld_db, 0666);
 	$query = "SELECT * FROM domains WHERE userid='".$userid."' AND domain='".$domain."' LIMIT 1";
@@ -402,7 +399,7 @@ function update_domain($domain, $ns1, $ns2, $ns1_ip, $ns2_ip)
 {
 	global $TLD, $tld_db;
 
-	show_header();
+	
 	$updated=strftime('%Y-%m-%d');
 	$userid=$_SESSION['userid'];
 	$base=sqlite_open_now($tld_db, 0666);
@@ -459,7 +456,6 @@ function check_domain1($domain)
 			echo "<font color=\"#ff0000\"><b>Taken</b></font><BR><BR>Sorry, that name is already taken.";
 		} else {
 			echo "<font color=\"#008000\"><b>Available!</b></font><BR><BR>Congratulations! ".$name.$TLD." is available.\n";
-			echo "Would you like to register it now?\n<form action=\"register.php\" method=\"post\">\n<input type=\"hidden\" name=\"domain\" value=\"".$name."\">\n<input type=\"submit\" name=\"submit\" value=\"Yes!\">\n</form>\n";
 
 			frm_register_domain($name.$TLD);
 		}
@@ -489,7 +485,7 @@ function login($username, $password)
 		// $_SESSION['country'] = $arr['country'];
 		header("location: index.php");
 	} else {
-		show_header();
+		
 		echo "Incorrect username or password or account not verified. Please try again.";
 		die;
 	}
@@ -498,7 +494,7 @@ function login($username, $password)
 function form_login()
 {
 	global $TLD;
-	show_header();
+	
 ?>
 <form action="user.php" method="post">
 <table width="400" align="center">
@@ -515,7 +511,7 @@ function form_login()
 function form_register()
 {
 	global $TLD;
-	show_header();
+	
 ?>
 <div class="tm-section tm-section-color-white">
             <div class="uk-container uk-container-center">
@@ -544,7 +540,7 @@ function register($username, $name, $email, $password)
 {
 	global $TLD, $tld_db;
 
-	show_header();
+	
 	
 	/* prepare clean data */
 	$username=htmlspecialchars(stripslashes($username));
@@ -602,7 +598,7 @@ function register($username, $name, $email, $password)
 function dashboard()
 {
 	global $TLD, $domain_expires, $tld_db;
-	show_header();
+	
 	
 	$username=$_SESSION['username'];
 	$userid=$_SESSION['userid'];
@@ -939,7 +935,7 @@ if(strlen($country)>0)
 function update_account($country, $password)
 {
 	global $tld_db;
-	show_header();
+	
 	if(!isset($_SESSION['userid']))
 	{
 		echo "No valid account."; die;
@@ -967,14 +963,15 @@ function create_domain($domain, $ns1, $ns2, $ns1_ip, $ns2_ip)
 	{
 		echo "Error validating user name.\n"; die;
 	}
-	$ns1=$_POST['ns1'];
-	$ns2=$_POST['ns2'];
+
 	$base=sqlite_open_now($tld_db, 0666);
-	$real_password=md5($password);
-	date_default_timezone_set('Australia/Brisbane');
 	$registered=strftime('%Y-%m-%d');
-	$query = "INSERT INTO domains (domain, name, email, ns1, ns2, ns1_ip, ns2_ip, registered, expires, updated, userid) VALUES('".$username."', '".$real_password."', '".$name."', '".$email."', '".$registered."', 0)";
+	$nextyear=strftime('%Y') + 1;
+	$expires=$nextyear.'-'.strftime('%m-%d');
+	$query = "INSERT INTO domains (domain, name, email, ns1, ns2, ns1_ip, ns2_ip, registered, expires, updated, userid) VALUES('".$domain."', 'Anonymous', 'Anonymous', '".$ns1."', '".$ns2."', '".$ns1_ip."', '".$ns2_ip."', '".$registered."', '".$expires."', '".$registered."', '".$userid."')";
 	$results = sqlite_query_now($base, $query);
+
+	echo "Success!";
 	
 }
 

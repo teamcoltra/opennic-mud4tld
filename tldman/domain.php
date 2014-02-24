@@ -141,7 +141,6 @@ if(isset($_REQUEST['action']))
 			die;
 	}
 } else {
-	show_header();
 	echo "Unspecified error.";
 }
 show_footer();
