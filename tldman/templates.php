@@ -62,7 +62,7 @@ function show_footer()
 
                 <div class="uk-panel">
                     <p>No copyright on content, logo and name can be used as long as it doesn't create confusion for users or imply endorsement of a product or service.</p>
-                    <a href="index.html"><img src="64.png" title="UIkit" alt="UIkit"></a>
+                    <a href="index.html"><img src="/images/64.png" title="UIkit" alt="UIkit"></a>
                 </div>
 
             </div>

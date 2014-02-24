@@ -7,7 +7,7 @@
 include("conf.php");
 show_header();
 
-echo "this doesn't work yet"
+echo "this doesn't work yet";
 
 show_footer();
 ?>
