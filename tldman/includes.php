@@ -278,6 +278,7 @@ if(!isset($_SESSION['username']))
 } else {
 ?>
 <form action="process.php" method="post">
+<input type="hidden" name="domain" value="$domain">
 <table width="450" border=0 cellspacing=1 cellpadding=0>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr><td width="200" valign="top">Username</td><td><?php echo $_SESSION['username']; ?><BR><font size="-1">(not you? <a href="user.php?action=frm_login">Login</a> as the correct user)</font></td></tr>
