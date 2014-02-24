@@ -5,6 +5,7 @@
     See COPYING file for details.
 */
 include("conf.php");
+show_header();
 
 if(!isset($_REQUEST['action']))
 {
